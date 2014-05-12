@@ -38,3 +38,9 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+group :development, :test do
+  gem 'capybara'
+  gem 'pry-rails'
+  gem 'rspec-rails'
+  gem 'selenium-webdriver'  # Need firefox for this to work.
+end
