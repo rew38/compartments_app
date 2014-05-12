@@ -1,28 +1,12 @@
-== README
+Pivotal Tracker Link: https://www.pivotaltracker.com/s/projects/1077236
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The compartments app is an app that allows you to create mini projects and organize them by compartments. Compartments are virtual spaces that include a title and a body of text (a text field). Eventually a compartment will be able to hold excel sheets and power point presentations. Additionally I would like to program a specific form that solely holds (annoted) links and presents them in a visually pleasing manner.
 
-Things you may want to cover:
+Compartments relate to each other similarly to a DOM Structure. Compartments can have parents and children as well as siblings.
 
-* Ruby version
+There will be an important tagging element to this app. Each compartment should be tagged in order to help user search for compartments based off of the content within its text field as well as its placment within its project.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Ultimately it would be great to easily convert a compartment project into a blog.
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+TESTER TESTER
