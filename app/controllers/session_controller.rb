@@ -8,11 +8,7 @@ class SessionController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       flash[:success] = "Thanks for loggin in!"
-      if user.is_a?(User)
-       redirect_to users_path
-      else
-        redirect_to "/"
-      end
+      redirect_to users_path
     else
       # rerender the login form
       render(:new)

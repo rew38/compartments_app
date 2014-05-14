@@ -1,0 +1,25 @@
+<!-- projects.show.html.erb -->
+
+<h1><%= @project.name %></h1>
+
+<h4>Create Your First Compartment</h4>
+
+  <%= form_for([@user, @project, @compartment]) do |f| %>
+    <%= f.label(:title) %>
+    <%= f.text_field(:title) %>
+    <%= f.label(:text_field) %>
+    <%= f.text_field(:text_field) %>
+
+    <%= f.hidden_field(:project_id, :value => @project.id) %>
+
+    <%= f.submit %>
+  <% end %>
+
+  <% @compartments.each do |compartment| %>
+    <li>
+      <a href="<%= user_project_compartment_path(@user, @project, compartment) %>">
+        <strong>Compartment Title:</strong> <%= compartment.title %>,
+      </a>
+        <strong>Compartment Text:</strong> <%= compartment.text_field%>
+    </li>
+  <% end %>

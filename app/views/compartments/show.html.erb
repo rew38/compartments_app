@@ -1,0 +1,11 @@
+<h1>Compartment</h1>
+<%= @compartment.title %>, <%= @compartment.text_field %>
+
+<%= form_for([@compartment]) do |f| %>
+  <%= f.label(:title) %>
+  <%= f.text_field(:title) %>
+  <%= f.label(:text_field) %>
+  <%= f.text_field(:text_field) %>
+
+  <%= f.submit %>
+<% end %>

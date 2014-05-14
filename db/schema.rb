@@ -11,10 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140512190406) do
+ActiveRecord::Schema.define(version: 20140513235820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "compartments", force: true do |t|
+    t.string   "title"
+    t.string   "text_field"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "ancestry"
+    t.integer  "project_id"
+  end
+
+  add_index "compartments", ["ancestry"], name: "index_compartments_on_ancestry", using: :btree
+
+  create_table "projects", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
 
   create_table "users", force: true do |t|
     t.string   "first_name"
@@ -23,6 +41,7 @@ ActiveRecord::Schema.define(version: 20140512190406) do
     t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_admin",        default: false
   end
 
 end

@@ -2,11 +2,21 @@
 
 <h1>Compartment App</h1>
 
+<% if user_logged_in?%>
+
+ <h2>Website Homepage</h2>
+  <p>
+    <a href="/users">I'm a logged in User, take me to my dash.</a>
+  </p>
+
+  <% else %>
     <a href="/session/new">Login</a>
 
     <a href="/users/new">  Sign Up</a>
 
       <% @users.each do |user| %>
-        <li><br><strong>First Name:</strong> <%= user.first_name%>,<strong>Last Name:</strong> <%= user.last_name%>, <strong>Email:</strong> <%= user.email %>
+        <li><br><strong>First Name:</strong> <%= user.first_name%>, <strong>Last Name:</strong> <%= user.last_name%>, <strong>Email:</strong> <%= user.email %>
       <% end %>
-    </ul>
+
+
+<% end %>

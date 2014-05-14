@@ -1,0 +1,15 @@
+<!-- projects.new.html.erb -->
+
+
+
+<%= link_to "Back", users_path %>
+<h3>Create a New Project</h3>
+
+  <%= form_for([@user, @project]) do |f| %>
+    <%= f.label(:name) %>
+    <%= f.text_field(:name) %>
+
+    <%= f.hidden_field(:user_id, :value => @user.id) %>
+
+    <%= f.submit %>
+  <% end %>
