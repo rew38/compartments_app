@@ -21,9 +21,8 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
-    @compartment = Compartment.new
+    @root_compartment = Compartment.new(project_id: @project.id)
     @user = User.find(session[:user_id])
-    @compartments = Compartment.where(:project_id => params[:id])
   end
 
 private

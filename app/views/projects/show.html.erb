@@ -4,22 +4,21 @@
 
 <h4>Create Your First Compartment</h4>
 
-  <%= form_for([@user, @project, @compartment]) do |f| %>
+  <%= form_for(@root_compartment) do |f| %>
     <%= f.label(:title) %>
     <%= f.text_field(:title) %>
     <%= f.label(:text_field) %>
     <%= f.text_field(:text_field) %>
-
-    <%= f.hidden_field(:project_id, :value => @project.id) %>
-
+    <%= f.hidden_field(:project_id) %>
     <%= f.submit %>
   <% end %>
 
-  <% @compartments.each do |compartment| %>
+  <% @project.compartments.each do |compartment| %>
     <li>
-      <a href="<%= user_project_compartment_path(@user, @project, compartment) %>">
-        <strong>Compartment Title:</strong> <%= compartment.title %>,
-      </a>
+        <strong>Compartment Title:</strong> <a href="<%= compartment_path(compartment) %>"> <%= compartment.title %>,</a>
         <strong>Compartment Text:</strong> <%= compartment.text_field%>
+        <strong>Parent Compartment</strong> <%= compartment.parent.title if compartment.parent %>
+        <strong>Sibling Compartment</strong> <%= compartment.siblings %>
+
     </li>
   <% end %>

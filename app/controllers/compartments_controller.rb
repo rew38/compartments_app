@@ -13,7 +13,7 @@ class CompartmentsController < ApplicationController
   def create
     @compartment = Compartment.new(compartment_params)
     if @compartment.save
-      redirect_to("/users/#{params[:user_id]}/projects/#{@compartment.project_id}")
+      redirect_to(@compartment)
     else
       render :new
     end
@@ -22,7 +22,7 @@ class CompartmentsController < ApplicationController
   private
 
   def compartment_params
-    params.require(:compartment).permit(:project_id, :title, :text_field)
+    params.require(:compartment).permit(:project_id, :parent_id,:title, :text_field)
   end
 
 end

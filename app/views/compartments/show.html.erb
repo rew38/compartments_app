@@ -1,11 +1,15 @@
+
+<%= link_to 'Back', :back %>
 <h1>Compartment</h1>
 <%= @compartment.title %>, <%= @compartment.text_field %>
 
-<%= form_for([@compartment]) do |f| %>
+
+<%= form_for(Compartment.new(parent: @compartment, project: @compartment.project)) do |f| %>
   <%= f.label(:title) %>
   <%= f.text_field(:title) %>
   <%= f.label(:text_field) %>
   <%= f.text_field(:text_field) %>
-
+  <%= f.hidden_field(:parent_id) %>
+  <%= f.hidden_field(:project_id) %>
   <%= f.submit %>
 <% end %>
