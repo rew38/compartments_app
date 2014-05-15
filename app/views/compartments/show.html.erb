@@ -1,9 +1,44 @@
 
-<%= link_to 'Back', :back %>
+<%= link_to 'Back', :back %><br>
+<%= link_to 'Back to Your Projects', user_projects_path(@user) %>
+
+<br>
+<br>
+
+Ancestor Compartments:
+<% for compartment in @compartment.ancestors %>
+  <%= link_to h(compartment.title), compartment %> &gt
+<% end %>
+
+<br>
+Current Compartment:
+<%= @compartment.title%>
+
+<br>
+Children Compartments:
+<% for compartment in @compartment.children %>
+  <%= link_to h(compartment.title), compartment %> -
+<% end %>
+
+<br>
+
+
 <h1>Compartment</h1>
 <%= @compartment.title %>, <%= @compartment.text_field %>
 
+<h2>Edit this Compartment</h2>
+<%= form_for (@compartment) do |f| %>
+  <%= f.label(:title) %>
+  <%= f.text_field(:title) %>
+  <%= f.label(:text_field) %>
+  <%= f.text_field(:text_field) %>
+  <%= f.hidden_field(:parent_id) %>
+  <%= f.hidden_field(:project_id) %>
+  <%= f.submit %>
+<% end %>
 
+<br>
+<h2>Add a Child Compartment</h2>
 <%= form_for(Compartment.new(parent: @compartment, project: @compartment.project)) do |f| %>
   <%= f.label(:title) %>
   <%= f.text_field(:title) %>
@@ -13,3 +48,28 @@
   <%= f.hidden_field(:project_id) %>
   <%= f.submit %>
 <% end %>
+
+<br>
+
+<h3>This Compartment's Parent</h3>
+<!-- I CANT GET THE LINK TO WORK ON THE PARENT COMPARTMENT -->
+    <% if @compartment.root? %>
+      <h5>This is the Root Compartment</h5>
+    <% else %>
+     <strong>Compartment Title: </strong> <a href="<%= compartment_path(@compartment.parent) %>"><%= @compartment.parent.title %></a>
+     <strong>Compartment Text</strong> <%= @compartment.parent.text_field %>
+    <% end %>
+<br>
+
+<h3>This Compartment's Children</h3>
+      <% if @compartment.has_children? %>
+        <% @compartment.children.each do |compartment| %>
+          <li>
+              <strong>Compartment Title:</strong> <a href="<%= compartment_path(compartment) %>"> <%= compartment.title %>,</a>
+              <strong>Compartment Text:</strong> <%= compartment.text_field%>
+              <strong>Parent Compartment</strong> <%= compartment.parent.title if compartment.parent %>
+          </li>
+        <% end %>
+        <% else %>
+          <h5>This Compartment has no children. Make some!</h5>
+        <% end %>

@@ -1,7 +1,9 @@
 <!-- projects.index.html.erb -->
 
-<h2> Your Projects </h2>
+<%= link_to 'Back', :back %>
 
+
+<h2> Your Projects </h2>
 
 <% @user.projects.each do |project| %>
   <p><%= link_to "Project Name: #{project.name}", user_project_path(@user, project) %></p>
