@@ -9,9 +9,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<h1>User Layout</h1>
-<a href="/logout"> Logout</a>
 
+<% if session[:user_id] %>
+  <a href="/logout"> Logout</a>
+<% else %>
+  Sign Up Below
+<%end%>
 <%= yield %>
 
 </body>

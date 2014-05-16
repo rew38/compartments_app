@@ -5,6 +5,7 @@
 <br>
 <br>
 
+<div >
 Ancestor Compartments:
 <% for compartment in @compartment.ancestors %>
   <%= link_to h(compartment.title), compartment %> &gt
@@ -19,7 +20,6 @@ Children Compartments:
 <% for compartment in @compartment.children %>
   <%= link_to h(compartment.title), compartment %> -
 <% end %>
-
 <br>
 
 

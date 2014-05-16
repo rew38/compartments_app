@@ -1,7 +1,8 @@
 <!-- welcome.index.html.erb -->
 
 <h1>Compartment App</h1>
-
+<strong>An idea and knowledge management app. Depending on what you are woking on the Compartment App allows you to create a structure to store and manage content. </strong>
+<br>
 <% if user_logged_in?%>
 
  <h2>Website Homepage</h2>
@@ -13,10 +14,5 @@
     <a href="/session/new">Login</a>
 
     <a href="/users/new">  Sign Up</a>
-
-      <% @users.each do |user| %>
-        <li><br><strong>First Name:</strong> <%= user.first_name%>, <strong>Last Name:</strong> <%= user.last_name%>, <strong>Email:</strong> <%= user.email %>
-      <% end %>
-
 
 <% end %>

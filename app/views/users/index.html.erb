@@ -1,19 +1,25 @@
 <!-- users.index.html.erb -->
 
-<% if user_logged_in? %>
 
   <h1>Welcome <%= current_user.first_name.capitalize %></h1>
 
   <%= link_to "Home", root_path %>
 
-  <%= link_to "Create a New Project", new_user_project_path(@user)%>
+  Add a little structure to your life.
+  <br>
 
-  <%= link_to "View Your Projects", user_projects_path(@user) %>
 
+  <br>
+
+  <% if current_user.projects.empty? %>
+      Get started by <%= link_to "creating your first project", new_user_project_path(@user)%>
   <% else %>
+    <%= link_to "Add a new Project", new_user_project_path(@user) %>
+<br><br>
+    Your current Projects:<br>
+    <% current_user.projects.each do |project| %>
+      <p><%= link_to "Project Name: #{project.name}", user_project_path(@user, project) %></p>
+    <% end %>
+  <% end %>
 
-      <% @users.each do |user| %>
-        <li><br><strong>First Name:</strong> <%= user.first_name%>,<strong>Last Name:</strong> <%= user.last_name%>, <strong>Email:</strong> <%= user.email %>
-      <% end %>
 
-<%end%>

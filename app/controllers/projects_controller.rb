@@ -23,6 +23,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @root_compartment = Compartment.new(project_id: @project.id)
     @user = User.find(session[:user_id])
+    @json_result = @project.compartments.arrange_serializable
   end
 
 private

@@ -7,20 +7,45 @@
 
 <h4>Create a Root Compartment</h4>
 
+What is a compartment?
+Anything you want. It's virtual realestate to store information and help you keep track of things in structured way.
+
+
+
   <%= form_for(@root_compartment) do |f| %>
-    <%= f.label(:title) %>
+    <%= f.label(:title) %><br>
     <%= f.text_field(:title) %>
+    <br>
     <%= f.label(:text_field) %>
+    <br>
     <%= f.text_field(:text_field) %>
+    <br>
     <%= f.hidden_field(:project_id) %>
     <%= f.submit %>
   <% end %>
 
+
+<%# render_compartments(@project.compartments)%>
+
+<script>
+  var compartments = '<%= @project.compartments.arrange_serializable.to_json %>'
+</script>
+
 <br><br>
 History of Compartment Creation
   <% @project.compartments.each do |compartment| %>
-    <li>
-      <%= compartment.created_at%>
+    <ul>
+
+    <% if compartment.root? %>
+      <%= compartment.title %>
+      <%= compartment.children %>
+      <!--  get compartment children or subtrees and show tohse -->
+      <% else %>
+
+    <% end %>
+  </ul>
+
+      <%= time_ago_in_words compartment.created_at %>
         <strong>Compartment Title:</strong> <a href="<%= compartment_path(compartment) %>"> <%= compartment.title %>,</a>
         <strong>Parent Compartment</strong> <%= compartment.parent.title if compartment.parent %>
 
